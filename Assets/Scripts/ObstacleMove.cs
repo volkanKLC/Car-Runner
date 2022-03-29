@@ -9,8 +9,6 @@ public class ObstacleMove : MonoBehaviour
     void Start()
     {
         speed = Random.Range(110, 300);
-
-
     }
 
     void FixedUpdate()

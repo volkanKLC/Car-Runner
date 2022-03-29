@@ -4,27 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [Header("PLAYER VARIABLES")]
     public Transform zAxis, xAxis;
     public float speed;
     public float controlSpeed;
     public float clampMin, clampMax;
-    
-    
+
+
     private float _mousePos;
 
-
-    void Start()
+    UiManager UiMan;
+    private void Start()
     {
-
+        UiMan = UiManager.Instance;
     }
-
     void FixedUpdate()
     {
-        if (UI.Instance.isStart)
+        if (UiMan.isStart)
         {
-
-
             zAxis.position += Vector3.forward * speed * Time.fixedDeltaTime;
 
             if (Input.GetMouseButton(0))
@@ -33,41 +30,34 @@ public class PlayerController : MonoBehaviour
             }
 
             xAxis.position = new Vector3(_mousePos, xAxis.position.y, xAxis.position.z);
-
         }
 
-            float clampX = Mathf.Clamp(xAxis.position.x, clampMin, clampMax);
+        float clampX = Mathf.Clamp(xAxis.position.x, clampMin, clampMax);
 
-            xAxis.position = new Vector3(clampX, xAxis.position.y, xAxis.position.z);
-
-        
-
+        xAxis.position = new Vector3(clampX, xAxis.position.y, xAxis.position.z);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.CompareTag("benzin"))
         {
-            UI.Instance.SetScore(10);
+            UiMan.SetScore(10);
             Destroy(other.gameObject);
             speed++;
         }
 
-        
         if (other.gameObject.CompareTag("hole"))
         {
-
-            UI.Instance.SetScore(-10);
-           // UI.Instance.gameOverPanel.SetActive(true);
+            UiMan.SetScore(-10);
+            // UI.Instance.gameOverPanel.SetActive(true);
             Time.timeScale = 0;
 
             speed--;
         }
         if (other.gameObject.CompareTag("Untagged"))
         {
-            UI.Instance.gameOverPanel.SetActive(true);
+            UiMan.gameOverPanel.SetActive(true);
             Time.timeScale = 0;
         }
     }
