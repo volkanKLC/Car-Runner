@@ -40,14 +40,14 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("benzin"))
+        if (other.CompareTag("Fuel"))
         {
             UiMan.SetScore(10);
             Destroy(other.gameObject);
             speed++;
         }
 
-        if (other.gameObject.CompareTag("hole"))
+        if (other.CompareTag("hole"))
         {
             UiMan.SetScore(-10);
             // UI.Instance.gameOverPanel.SetActive(true);
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
             speed--;
         }
-        if (other.gameObject.CompareTag("Untagged"))
+        if (other.CompareTag("Untagged"))
         {
             UiMan.gameOverPanel.SetActive(true);
             Time.timeScale = 0;
