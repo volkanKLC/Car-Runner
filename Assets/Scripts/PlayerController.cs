@@ -50,10 +50,15 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("hole"))
         {
             UiMan.SetScore(-10);
-            // UI.Instance.gameOverPanel.SetActive(true);
-            Time.timeScale = 0;
-
             speed--;
+
+            if (UiMan.Score <= 0)
+            {
+                UiMan.Score = 0;
+                UiMan.scoreTxt.text = "SCORE: " + UiMan.Score;
+                UiMan.gameOverPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
         if (other.CompareTag("Untagged"))
         {

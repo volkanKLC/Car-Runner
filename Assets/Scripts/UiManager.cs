@@ -29,7 +29,7 @@ public class UiManager : MonoBehaviour
 
     [Header("VARIABLES")]
     public int Score = 0;
-    public Text higtScore;
+    public Text scoreTxt;
     public bool isStart;
 
     void Start()
@@ -41,7 +41,7 @@ public class UiManager : MonoBehaviour
     public void SetScore(int _score)
     {
         Score += _score;
-        higtScore.text = "SCORE: " + _score;
+        scoreTxt.text = "SCORE: " + Score;
     }
     public void StrartBtn()
     {
